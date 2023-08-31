@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism Layout</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body {
+    background-color: #181830;
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .glass-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+  }
+
+  .glass-navbar .navbar-brand {
+    color: white;
+    font-weight: bold;
+  }
+
+  .glass-navbar .nav-item {
+    margin-right: 15px;
+  }
+
+  .glass-navbar .nav-link {
+    color: white;
+    transition: color 0.3s;
+  }
+
+  .glass-navbar .nav-link:hover {
+    color: #42b983;
+  }
+
+  .glass-row {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    background-color: #2a2a38;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateZ(0);
+  }
+
+  .file-label:hover {
+    background-color: #42b983;
+    transform: translateZ(5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-float {
+    position: relative;
+    animation: floatAnimation 3s ease-in-out infinite;
+  }
+
+  @keyframes floatAnimation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light glass-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#"> <img style="width: 400px;" src="logo.png" alt=""> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row glass-row">
+      <div class="col-md-6">
+        <div class="glass-container">
+          <form>
+            <div class="form-group">
+              <label for="fileInput" class="file-label">Choose a File</label>
+              <input type="file" id="fileInput" class="file-input" accept=".pdf, .doc, .docx, .txt" onchange="handleFileChange(this)">
+            </div>
+            <div class="form-group">
+              <p id="fileInfo" class="mb-0"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img class="custom-float" style="width: 300px;" src="https://cdn3d.iconscout.com/3d/premium/thumb/code-file-5463923-4568181.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleFileChange(input) {
+      const fileInfo = document.getElementById("fileInfo");
+      if (input.files.length > 0) {
+        const fileName = input.files[0].name;
+        const fileExtension = fileName.split('.').pop();
+        fileInfo.textContent = `File: ${fileName} (${fileExtension.toUpperCase()})`;
+      } else {
+        fileInfo.textContent = "";
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
